@@ -21,8 +21,8 @@ def get_places():
 def reserve_place(place_id: int):
     for place in places_db:
         if place["id"] == place_id:
-            # Intentional bug: we are not checking if place["is_available"] is True
-            # We just blindly let them reserve it even if someone else already took it
+            if not place["is_available"]:
+                raise HTTPException(status_code=400, detail="Place is already booked!")
             place["is_available"] = False
             return {"Message": f"Successfully reserved place {place_id}"}
         
