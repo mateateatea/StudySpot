@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 app = FastAPI(title="StudySpot API", description="Libary seat reservation system")
@@ -14,9 +15,9 @@ places_db = [
     {"id": 4, "name": "Soundproof cabin A", "type": "cabin", "booked_slots": ["2026-07-15 14:00"]},
 ]
 
-@app.get("/")
+@app.get("/", response_class=FileResponse)
 def read_root():
-    return {"message": "Welcome to StudySpot! Reservation system is working"}
+    return "app/index.html"
 
 @app.get("/places")
 def get_places():
@@ -34,5 +35,5 @@ def reserve_place(place_id: int, request: ReservationRequest):
 
             place["booked_slots"].append(booking_datetime)
             return {"message": f"You successfully reserved desk number {place_id} for time {booking_datetime}"}
-        
+    
     raise HTTPException(status_code=404, detail="Place not found")
