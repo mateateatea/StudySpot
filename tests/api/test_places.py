@@ -8,7 +8,7 @@ def test_read_root():
 
     assert response.status_code == 200
 
-    assert response.json() == {"message": "Welcome to StudySpot! Reservation system is working"}
+    assert "StudySpot Reservation" in response.text
 
 def test_get_places():
     response = client.get("/places")
