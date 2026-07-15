@@ -21,7 +21,26 @@ def test_get_places():
 
     assert len(data["places"]) == 4
 
+    assert "booked_slots" in data["places"][0]
+
 def test_cannot_reserve_already_booked_place():
-    response = client.post("/reserve/4")
+    payload = {
+        "date": "2026-07-15",
+        "time_slot": "14:00"
+    }
+
+    response = client.post("/reserve/4", json=payload)
 
     assert response.status_code == 400
+    assert response.json() == {"detail": "The slot 2026-07-15 14:00 is already booked"}
+
+def test_can_reserve_free_place():
+    payload = {
+        "date": "2026-07-16",
+        "time_slot": "09:00"
+    }
+
+    response = client.post("/reserve/1", json=payload)
+
+    assert response.status_code == 200
+    assert "successfully reserved" in response.json()["message"]
