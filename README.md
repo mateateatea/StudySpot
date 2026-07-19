@@ -59,5 +59,22 @@ python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
 playwright install
+```
 
 ### 2. Start the application
+Run the FastAPI server locally:
+```bash
+uvicorn app.main:app --reload
+```
+The web interface is available at: http://127.0.0.1:8000
+
+### 3. Run the Automated Tests
+To run the fast API tests and invisible UI tests:
+```bash
+python -m pytest -v
+```
+
+To watch the Playwright "ghost user" run the UI tests in a visible browser:
+```bash
+python -m pytest tests/api/test_ui.py --headed
+```
