@@ -19,23 +19,23 @@ This project simulates a real-world application with a backend API, a frontend i
 
 ### 1. Web Interface (Frontend)
 *(Shows the functioning HTML UI successfully communicating with the backend API).*
-![StudySpot Web Interface](frontend.png)
+![StudySpot Web Interface](assets/frontend.png)
 
 ### 2. Manual API Testing (Postman)
 *(Exploratory testing and endpoint verification for payload structures and status codes).*
-![Postman Testing](postman.png)
+![Postman Testing](assets/postman.png)
 
 ### 3. Automated API & E2E Testing (Pytest + Playwright)
 *(Passing test suite verifying core logic, negative paths, and browser automation).*
-![Terminal Pytest](terminal.png)
+![Terminal Pytest](assets/terminal.png)
 
 ### 4. Continuous Integration (GitHub Actions)
 *(Cloud-based CI/CD pipeline that automatically builds the app and runs all tests on every push).*
-![GitHub Actions Pipeline](actions.png)
+![GitHub Actions Pipeline](assets/actions.png)
 
 ### 5. Agile Workflow (Jira)
 *(Professional bug reporting and task tracking using a Kanban board).*
-![Jira Kanban Board](jira.png)
+![Jira Kanban Board](assets/jira.png)
 
 ---
 
@@ -47,3 +47,17 @@ This project implements the **Testing Pyramid** approach:
 2.  **Automated API Tests (Pytest):** Fast, reliable tests that verify the core logic, status codes (200 OK, 400 Bad Request, 422 Unprocessable Entity), and business rules (e.g., blocking double bookings).
 3.  **UI Automation (Playwright):** Simulates real user behavior in the browser, filling out forms and interacting with the DOM to ensure the frontend correctly communicates with the backend.
 4.  **Continuous Integration (GitHub Actions):** Every `git push` triggers a cloud-based Ubuntu server that boots the app, installs browsers, and runs the entire test suite automatically to prevent regressions.
+
+## 🚀 How to Run the Project Locally
+
+### 1. Setup the Environment
+Clone the repository and install the required dependencies:
+```bash
+git clone https://github.com/YOUR_USERNAME/StudySpot.git
+cd StudySpot
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+pip install -r requirements.txt
+playwright install
+
+### 2. Start the application
