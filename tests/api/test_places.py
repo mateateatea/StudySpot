@@ -44,3 +44,13 @@ def test_can_reserve_free_place():
 
     assert response.status_code == 200
     assert "successfully reserved" in response.json()["message"]
+
+def test_reserve_non_existent_place():
+    payload = {
+        "date": "2026-07-20",
+        "time_slot": "10:00"
+    }
+
+    response = client.post("/reserve/5", json=payload)
+
+    assert response.status_code == 404
