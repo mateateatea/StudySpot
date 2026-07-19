@@ -53,7 +53,7 @@ This project implements the **Testing Pyramid** approach:
 ### 1. Setup the Environment
 Clone the repository and install the required dependencies:
 ```bash
-git clone https://github.com/YOUR_USERNAME/StudySpot.git
+git clone https://github.com/mateateatea/StudySpot
 cd StudySpot
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
