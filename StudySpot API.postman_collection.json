@@ -33,8 +33,17 @@
       "request": {
         "method": "POST",
         "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"date\": \"2026-07-14\",\r\n    \"time_slot\": \"10:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
-          "raw": "http://127.0.0.1:8000/reserve/4",
+          "raw": "http://127.0.0.1:8000/reserve/1",
           "protocol": "http",
           "host": [
             "127",
@@ -45,7 +54,7 @@
           "port": "8000",
           "path": [
             "reserve",
-            "4"
+            "1"
           ]
         }
       },
