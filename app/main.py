@@ -15,6 +15,10 @@ places_db = [
     {"id": 4, "name": "Soundproof cabin B", "type": "cabin", "booked_slots": ["2026-07-15 14:00"]},
 ]
 
+_seed_places = [
+    {**place, "booked_slots": list(place["booked_slots"])} for place in places_db
+]
+
 @app.get("/", response_class=FileResponse)
 def read_root():
     return "app/index.html"
@@ -37,3 +41,14 @@ def reserve_place(place_id: int, request: ReservationRequest):
             return {"message": f"You successfully reserved desk number {place_id} for time {booking_datetime}"}
     
     raise HTTPException(status_code=404, detail="Place not found")
+
+
+@app.post("/reset")
+def reset_places():
+    # Restores places_db to its original seed data. Used by teh Playwright
+    # UI tests so they don't depend on the app being freshly restarted 
+    # before every test run.
+    places_db.clear()
+    for place in _seed_places:
+        places_db.append({**place, "booked_slots": list(place["booked_slots"])})
+    return {"message": "places_db has been reset to seed data"}

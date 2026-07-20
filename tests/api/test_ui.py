@@ -1,4 +1,12 @@
 from playwright.sync_api import Page, expect
+import pytest
+import requests
+
+@pytest.fixture(autouse=True)
+def reset_server_data():
+    # Calling /reset makes sure each UI test starts from clean seed data.
+    requests.post("http://127.0.0.1:8000/reset")
+    yield
 
 def test_successful_ui_reservation(page: Page):
     page.goto("http://127.0.0.1:8000")
